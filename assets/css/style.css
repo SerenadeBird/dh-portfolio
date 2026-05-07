@@ -1190,6 +1190,17 @@ img { max-width: 100%; display: block; }
   align-items: stretch;
 }
 
+/* Icônes communes */
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.icon-lg {
+  width: 20px;
+  height: 20px;
+}
+
 /* Bouton email */
 .btn-email {
   display: inline-flex;
