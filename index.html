@@ -7,7 +7,7 @@
     <meta name="author" content="Dylan Holin">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#060b18">
-    <meta name="color-scheme" content="dark">
+    <meta name="color-scheme" content="dark light">
     <meta name="referrer" content="no-referrer">
     <!-- En-têtes de sécurité et confidentialité RGPD -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
@@ -55,6 +55,10 @@
         </ul>
         <button class="nav-menu-btn" id="menu-btn" aria-label="Ouvrir le menu" aria-expanded="false">
             <span></span><span></span><span></span>
+        </button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Basculer entre mode clair et mode sombre">
+            <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">☀</span>
+            <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">☾</span>
         </button>
     </nav>
 </header>

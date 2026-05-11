@@ -51,7 +51,7 @@ window.addEventListener('scroll', () => {
 document.getElementById('annee-footer').textContent = new Date().getFullYear();
 
 // ══════════════════════════════════════════════════════════
-// ══  PIXEL ART SPACE ANIMATION - Thème Spatial 32x32     ══
+// ══  HERO CANVAS - Infrastructure Active Salle de Contrôle  ══
 // ══════════════════════════════════════════════════════════
 (function() {
   const canvas = document.getElementById('pixel-canvas');
@@ -60,75 +60,25 @@ document.getElementById('annee-footer').textContent = new Date().getFullYear();
   
   let W, H, prevW = 0;
   
-  // Palette spatiale améliorée
+  // Lecture des couleurs depuis les variables CSS (theming friendly)
+  function getCSSVar(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+  
   const C = {
-    // Étoiles
-    star: '#FFFFFF',
-    starDim: '#8899AA',
-    starWarm: '#FFE4B5',
-    starCool: '#B0C4DE',
-    // Planètes
-    sunCore: '#FFD700',
-    sunGlow: '#FF8C00',
-    sunCorona: '#FF4500',
-    mercury: '#8B8682',
-    venus: '#E6C35C',
-    earthBlue: '#4A90D9',
-    earthGreen: '#228B22',
-    earthCloud: '#F0F8FF',
-    mars: '#CD5C5C',
-    marsDark: '#8B3A3A',
-    jupiter: '#D4A574',
-    jupiterBand: '#8B7355',
-    saturn: '#F4D59E',
-    saturnRing: '#C9A86C',
-    neptune: '#4169E1',
-    // Astéroïdes
-    rock1: '#696969',
-    rock2: '#808080',
-    rock3: '#A9A9A9',
-    rock4: '#5C5C5C',
-    // Vaisseaux
-    shipBody: '#C0C0C0',
-    shipDark: '#708090',
-    shipLight: '#E8E8E8',
-    shipEngine: '#00BFFF',
-    flame1: '#FF6347',
-    flame2: '#FF8C00',
-    flame3: '#FFD700',
-    // Effets
-    cyan: '#00E5CC',
-    blue: '#4F90F7',
-    purple: '#9370DB',
-    nebula1: '#1a0a2e',
-    nebula2: '#0d1b3e'
+    grid: getCSSVar('--hero-canvas-grid'),
+    gridHover: getCSSVar('--hero-canvas-grid-hover'),
+    node: getCSSVar('--hero-canvas-node'),
+    nodeActive: getCSSVar('--hero-canvas-node-active'),
+    edge: getCSSVar('--hero-canvas-edge'),
+    packet: getCSSVar('--hero-canvas-packet'),
+    radar: getCSSVar('--hero-canvas-radar'),
+    radarSweep: getCSSVar('--hero-canvas-radar-sweep'),
+    scan: getCSSVar('--hero-canvas-scan'),
+    scanActive: getCSSVar('--hero-canvas-scan-active')
   };
   
-  let stars = [], trails = [], spaceObjects = [], nebulaClouds = [], exclusionZones = [];
-
-  // Canvas offscreen pour les nébuleuses : rendu statique dessiné 1 fois dans init()
-  // puis blitté chaque frame via drawImage (beaucoup moins cher qu'un gradient par frame)
-  const nebulaCanvas = document.createElement('canvas');
-  const nebulaCtx = nebulaCanvas.getContext('2d');
-
-  function renderNebulaLayer() {
-    nebulaCanvas.width = W;
-    nebulaCanvas.height = H;
-    nebulaCtx.clearRect(0, 0, W, H);
-    nebulaClouds.forEach(cloud => {
-      const gradient = nebulaCtx.createRadialGradient(
-        cloud.x, cloud.y, 0,
-        cloud.x, cloud.y, cloud.radius
-      );
-      gradient.addColorStop(0, cloud.color);
-      gradient.addColorStop(1, 'transparent');
-      nebulaCtx.globalAlpha = cloud.alpha;
-      nebulaCtx.fillStyle = gradient;
-      nebulaCtx.fillRect(cloud.x - cloud.radius, cloud.y - cloud.radius,
-                         cloud.radius * 2, cloud.radius * 2);
-    });
-    nebulaCtx.globalAlpha = 1;
-  }
+  let gridNodes = [], gridEdges, packets = [], radarAngle = 0, scanY = 0, exclusionZones = [];
 
   // Calcule les zones protégées depuis les positions réelles des éléments texte
   function calcExclusionZones() {
@@ -174,15 +124,13 @@ document.getElementById('annee-footer').textContent = new Date().getFullYear();
     if (prevW !== newW) {
       prevW = newW;
       init();
-      // En mode reduced-motion, la boucle rAF est à l'arrêt : on force un
-      // redraw manuel pour ne pas laisser un canvas vide après resize.
       if (motionQuery.matches && canvasVisible && !document.hidden) {
         draw(performance.now());
       }
     }
   }
   
-  // Dessiner un pixel à une position absolue
+  // Dessiner un pixel
   function px(x, y, color, alpha = 1) {
     if (x < 0 || x > W || y < 0 || y > H) return;
     ctx.globalAlpha = alpha;
@@ -190,322 +138,177 @@ document.getElementById('annee-footer').textContent = new Date().getFullYear();
     ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
   }
   
-  // Dessiner un carré de pixels
-  function pxBlock(x, y, size, color, alpha = 1) {
+  // Dessiner une ligne
+  function line(x1, y1, x2, y2, color, alpha = 1) {
     ctx.globalAlpha = alpha;
-    ctx.fillStyle = color;
-    ctx.fillRect(Math.floor(x), Math.floor(y), size, size);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
   }
   
   function init() {
-    // Nuages de nébuleuse (fond)
-    nebulaClouds = [];
-    for (let i = 0; i < 5; i++) {
-      nebulaClouds.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        radius: 80 + Math.random() * 120,
-        color: Math.random() > 0.5 ? C.nebula1 : C.nebula2,
-        alpha: 0.1 + Math.random() * 0.15
-      });
-    }
-    // Pré-rendu des nébuleuses dans le canvas offscreen (statique)
-    renderNebulaLayer();
-    
-    // Étoiles de fond (beaucoup plus)
-    stars = [];
-    for (let i = 0; i < 150; i++) {
-      const type = Math.random();
-      stars.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        bright: 0.3 + Math.random() * 0.7,
-        speed: 0.002 + Math.random() * 0.004,
-        phase: Math.random() * Math.PI * 2,
-        size: type > 0.95 ? 3 : (type > 0.8 ? 2 : 1),
-        color: type > 0.7 ? C.starWarm : (type > 0.4 ? C.star : C.starCool)
-      });
-    }
-    
-    // 15 traînées d'étoiles filantes
-    trails = [];
-    for (let i = 0; i < 15; i++) trails.push(createTrail());
-    
-    // Objets spatiaux pixel art 32x32
-    spaceObjects = [];
-    
-    // ═══════════════════════════════════════════════════
-    // ÉCHELLES RÉALISTES DU SYSTÈME SOLAIRE
-    // Soleil: 1,392,000 km → 40px (référence)
-    // Jupiter: 139,820 km → 32px
-    // Saturne: 116,460 km → 28px
-    // Neptune: 49,528 km → 16px
-    // Terre: 12,742 km → 10px
-    // Vénus: 12,104 km → 10px
-    // Mars: 6,779 km → 7px
-    // Astéroïdes: 1-500 km → 2-5px
-    // ═══════════════════════════════════════════════════
-    
-    // SOLEIL (hors zone texte)
-    const sunPos = randomPosOutsideText();
-    spaceObjects.push({
-      type: 'sun',
-      x: sunPos.x,
-      y: sunPos.y,
-      vx: (Math.random() - 0.5) * 0.08,
-      vy: (Math.random() - 0.5) * 0.05,
-      size: 40,
-      alpha: 0.9
-    });
-    
-    // Planètes à échelle réaliste (hors zone texte)
-    const planets = [
-      { name: 'jupiter', size: 32, colors: [C.jupiter, C.jupiterBand] },
-      { name: 'saturn', size: 28, hasRing: true },
-      { name: 'neptune', size: 16, color: C.neptune },
-      { name: 'earth', size: 10 },
-      { name: 'venus', size: 10, color: C.venus },
-      { name: 'mars', size: 7, colors: [C.mars, C.marsDark] }
-    ];
-    
-    planets.forEach(p => {
+    // Noeuds de la grille d'infrastructure (hors zone texte)
+    gridNodes = [];
+    const nodeCount = 7;
+    for (let i = 0; i < nodeCount; i++) {
       const pos = randomPosOutsideText();
-      spaceObjects.push({
-        type: 'planet',
-        ...p,
+      gridNodes.push({
         x: pos.x,
         y: pos.y,
-        vx: (Math.random() - 0.5) * 0.12,
-        vy: (Math.random() - 0.5) * 0.08,
-        alpha: 0.75 + Math.random() * 0.2
-      });
-    });
-    
-    // Astéroïdes PETITS (2-5px) - échelle réaliste
-    for (let i = 0; i < 8; i++) {
-      const pos = randomPosOutsideText();
-      spaceObjects.push({
-        type: 'asteroid',
-        x: pos.x,
-        y: pos.y,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: 2 + Math.floor(Math.random() * 4),
-        seed: Math.random() * 1000,
-        alpha: 0.6 + Math.random() * 0.3
+        active: false,
+        pulsePhase: Math.random() * Math.PI * 2
       });
     }
     
-    // 3 vaisseaux : BLEU, BLANC, ROUGE
-    const shipColors = [
-      { body: '#4A90D9', light: '#87CEEB', dark: '#1E3A5F', name: 'bleu' },
-      { body: '#F0F0F0', light: '#FFFFFF', dark: '#A0A0A0', name: 'blanc' },
-      { body: '#DC3545', light: '#FF6B6B', dark: '#8B0000', name: 'rouge' }
-    ];
+    // Segments reliant les noeuds
+    gridEdges = [];
+    for (let i = 0; i < gridNodes.length; i++) {
+      for (let j = i + 1; j < gridNodes.length; j++) {
+        if (Math.random() > 0.4) {
+          gridEdges.push({ from: i, to: j });
+        }
+      }
+    }
     
-    shipColors.forEach((colors, i) => {
-      const goingRight = i % 2 === 0;
-      const yZone = i === 0 ? 0.15 : (i === 1 ? 0.5 : 0.85);
-      const yPos = H * yZone + (Math.random() - 0.5) * H * 0.15;
-      spaceObjects.push({
-        type: 'ship',
-        x: goingRight ? -30 : W + 30,
-        y: yPos,
-        vx: goingRight ? (0.2 + Math.random() * 0.15) : -(0.2 + Math.random() * 0.15),
-        vy: (Math.random() - 0.5) * 0.05,
-        facingRight: goingRight,
-        scale: 1.2,
-        shipColors: colors,
-        pattern: buildShipPattern(colors),
-        alpha: 0.9
-      });
+    // Paquets lumineux sur les segments
+    packets = [];
+    gridEdges.forEach(edge => {
+      if (Math.random() > 0.5) {
+        packets.push({
+          edgeIndex: gridEdges.indexOf(edge),
+          progress: Math.random(),
+          speed: 0.002 + Math.random() * 0.003
+        });
+      }
     });
-
-    // Tri par taille (depth) calculé une fois ici plutôt qu'à chaque frame
-    spaceObjects.sort((a, b) => (b.size || 0) - (a.size || 0));
+    
+    // Reset animations
+    radarAngle = 0;
+    scanY = 0;
   }
   
-  function createTrail() {
-    return {
-      x: Math.random() * W,
-      y: -20,
-      speed: 1 + Math.random() * 2,
-      len: 15 + Math.floor(Math.random() * 25),
-      color: Math.random() > 0.5 ? C.cyan : C.blue
-    };
+  
+  // ══════════════════════════════════════════════════════════
+  // ══  DESSIN INFRASTRUCTURE ACTIVE                      ══
+  // ══════════════════════════════════════════════════════════
+  
+  function drawGrid(timestamp) {
+    // Quadrillage fin en fond
+    const gridSize = 30;
+    for (let x = 0; x < W; x += gridSize) {
+      line(x, 0, x, H, C.grid, 0.5);
+    }
+    for (let y = 0; y < H; y += gridSize) {
+      line(0, y, W, y, C.grid, 0.5);
+    }
   }
   
-  // ══════════════════════════════════════════════════════════
-  // ══  DESSIN DES OBJETS 32x32                              ══
-  // ══════════════════════════════════════════════════════════
-  
-  function drawSun(obj, timestamp) {
-    const { x, y, size, alpha } = obj;
-    const cx = x + size/2, cy = y + size/2;
+  function drawNodes(timestamp) {
     const time = timestamp * 0.001;
-    
-    // Corona externe (effet de flammes)
-    for (let angle = 0; angle < Math.PI * 2; angle += 0.3) {
-      const flareLen = 8 + Math.sin(time * 2 + angle * 3) * 4;
-      for (let r = size/2; r < size/2 + flareLen; r += 2) {
-        const fx = cx + Math.cos(angle) * r;
-        const fy = cy + Math.sin(angle) * r;
-        const flareAlpha = (1 - (r - size/2) / flareLen) * 0.4 * alpha;
-        pxBlock(fx - 1, fy - 1, 3, C.sunCorona, flareAlpha);
-      }
-    }
-    
-    // Glow externe
-    for (let r = size/2 + 2; r < size/2 + 12; r += 2) {
-      ctx.globalAlpha = (1 - (r - size/2) / 12) * 0.25 * alpha;
+    gridNodes.forEach((node, i) => {
+      // Pulse discret
+      const pulse = Math.sin(time * 2 + node.pulsePhase) * 0.3 + 0.7;
+      const nodeColor = node.active ? C.nodeActive : C.node;
+      const nodeAlpha = node.active ? 0.9 : 0.5;
+      
+      // Dessiner le noeud (cercle)
+      ctx.globalAlpha = nodeAlpha * pulse;
+      ctx.fillStyle = nodeColor;
       ctx.beginPath();
-      ctx.arc(cx, cy, r, 0, Math.PI * 2);
-      ctx.fillStyle = C.sunGlow;
+      ctx.arc(node.x, node.y, 4, 0, Math.PI * 2);
       ctx.fill();
-    }
-    
-    // Corps du soleil
-    for (let i = 0; i < size; i++) {
-      for (let j = 0; j < size; j++) {
-        const dist = Math.sqrt((i - size/2)**2 + (j - size/2)**2);
-        if (dist < size/2) {
-          const gradient = dist / (size/2);
-          const color = gradient < 0.6 ? C.sunCore : C.sunGlow;
-          px(x + i, y + j, color, alpha);
-        }
+      
+      // Activation aléatoire
+      if (Math.random() > 0.995) {
+        node.active = true;
+        setTimeout(() => { node.active = false; }, 500);
       }
-    }
-  }
-  
-  function drawPlanet(obj) {
-    const { x, y, size, name, color, colors, hasRing, alpha } = obj;
-    
-    // Corps de la planète (cercle)
-    for (let i = 0; i < size; i++) {
-      for (let j = 0; j < size; j++) {
-        const dist = Math.sqrt((i - size/2)**2 + (j - size/2)**2);
-        if (dist < size/2) {
-          let c;
-          
-          if (name === 'earth') {
-            // Terre avec continents (pattern fixe, pas de random)
-            const noise = Math.sin(i * 0.5 + size) * Math.cos(j * 0.4 + size);
-            c = noise > 0.3 ? C.earthGreen : C.earthBlue;
-            // Nuages fixes basés sur position
-            if (Math.sin(i * 0.8 + j * 0.6) > 0.7) c = C.earthCloud;
-          } else if (name === 'jupiter') {
-            // Jupiter avec bandes
-            c = (j % 6 < 3) ? colors[0] : colors[1];
-          } else if (name === 'mars') {
-            // Mars avec variations (pattern fixe)
-            c = (Math.sin(i * 0.7 + j * 0.5) > 0.4) ? colors[1] : colors[0];
-          } else if (name === 'saturn') {
-            c = C.saturn;
-          } else {
-            c = color || C.rock2;
-          }
-          
-          // Ombrage 3D
-          const shade = 1 - (i / size) * 0.3;
-          ctx.globalAlpha = alpha * shade;
-          px(x + i, y + j, c, alpha * shade);
-        }
-      }
-    }
-    
-    // Anneaux de Saturne
-    if (hasRing) {
-      const ringY = y + size/2;
-      for (let r = -size * 0.8; r < size * 1.8; r++) {
-        if (r < 0 || r > size) {
-          const ringDist = Math.abs(r - size/2);
-          const ringAlpha = Math.max(0, 1 - ringDist / (size * 0.8)) * 0.6;
-          for (let ry = -2; ry <= 2; ry++) {
-            px(x + r, ringY + ry * 0.3, C.saturnRing, ringAlpha * alpha);
-          }
-        }
-      }
-    }
-  }
-  
-  function drawAsteroid(obj) {
-    const { x, y, size, seed, alpha } = obj;
-    
-    // Génération procédurale basée sur seed
-    const rng = (n) => Math.abs(Math.sin(seed + n * 127.1) * 43758.5453) % 1;
-    
-    for (let i = 0; i < size; i++) {
-      for (let j = 0; j < size; j++) {
-        const dist = Math.sqrt((i - size/2)**2 + (j - size/2)**2);
-        // Forme irrégulière
-        const irregularity = rng(i * 17 + j * 31) * 0.3;
-        const threshold = size/2 * (0.7 + irregularity);
-        
-        if (dist < threshold) {
-          // Texture rocheuse
-          const texNoise = rng(i * 13 + j * 7 + seed);
-          let c;
-          if (texNoise > 0.8) c = C.rock3;
-          else if (texNoise > 0.5) c = C.rock2;
-          else if (texNoise > 0.2) c = C.rock1;
-          else c = C.rock4;
-          
-          // Cratères
-          const craterCheck = rng(Math.floor(i/4) * 100 + Math.floor(j/4));
-          if (craterCheck > 0.85) c = C.rock4;
-          
-          px(x + i, y + j, c, alpha);
-        }
-      }
-    }
-  }
-  
-  function buildShipPattern(sc) {
-    return [
-      { dx: 0, dy: 3, c: sc.dark },
-      { dx: 1, dy: 2, c: sc.dark },
-      { dx: 1, dy: 3, c: sc.body },
-      { dx: 1, dy: 4, c: sc.dark },
-      { dx: 2, dy: 1, c: sc.dark },
-      { dx: 2, dy: 2, c: sc.body },
-      { dx: 2, dy: 3, c: sc.light },
-      { dx: 2, dy: 4, c: sc.body },
-      { dx: 2, dy: 5, c: sc.dark },
-      { dx: 3, dy: 1, c: sc.dark },
-      { dx: 3, dy: 2, c: sc.body },
-      { dx: 3, dy: 3, c: sc.light },
-      { dx: 3, dy: 4, c: sc.body },
-      { dx: 3, dy: 5, c: sc.dark },
-      { dx: 4, dy: 2, c: sc.body },
-      { dx: 4, dy: 3, c: sc.light },
-      { dx: 4, dy: 4, c: sc.body },
-      { dx: 5, dy: 2, c: sc.body },
-      { dx: 5, dy: 3, c: sc.light },
-      { dx: 5, dy: 4, c: sc.body },
-      { dx: 6, dy: 3, c: '#00FFFF' },
-      { dx: 7, dy: 3, c: sc.light }
-    ];
-  }
-  
-  function drawShip(obj, timestamp) {
-    const { x, y, facingRight, alpha, scale = 1 } = obj;
-    const time = timestamp * 0.01;
-    const s = Math.floor(2 * scale);
-    
-    // Dessiner le vaisseau avec scale (pattern pré-calculé dans init)
-    obj.pattern.forEach(p => {
-      const px_ = facingRight ? p.dx : (7 - p.dx);
-      pxBlock(x + px_ * s, y + p.dy * s, s, p.c, alpha);
     });
+  }
+  
+  function drawEdges(timestamp) {
+    gridEdges.forEach(edge => {
+      const fromNode = gridNodes[edge.from];
+      const toNode = gridNodes[edge.to];
+      line(fromNode.x, fromNode.y, toNode.x, toNode.y, C.edge, 0.4);
+    });
+  }
+  
+  function drawPackets(timestamp) {
+    packets.forEach(packet => {
+      const edge = gridEdges[packet.edgeIndex];
+      const fromNode = gridNodes[edge.from];
+      const toNode = gridNodes[edge.to];
+      
+      // Position du paquet sur le segment
+      const x = fromNode.x + (toNode.x - fromNode.x) * packet.progress;
+      const y = fromNode.y + (toNode.y - fromNode.y) * packet.progress;
+      
+      // Dessiner le paquet
+      ctx.globalAlpha = 0.8;
+      ctx.fillStyle = C.packet;
+      ctx.beginPath();
+      ctx.arc(x, y, 2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Avancer le paquet
+      packet.progress += packet.speed;
+      if (packet.progress >= 1) packet.progress = 0;
+    });
+  }
+  
+  function drawRadar(timestamp) {
+    const centerX = W / 2;
+    const centerY = H / 2;
+    const maxRadius = Math.min(W, H) * 0.4;
     
-    // Flammes du réacteur (animées)
-    const flameLen = Math.floor((4 + Math.sin(time) * 1.5) * scale);
-    for (let f = 0; f < flameLen; f++) {
-      const flameX = facingRight ? x - f * s - s : x + 8 * s + f * s;
-      const flameAlpha = (1 - f / flameLen) * 0.8 * alpha;
-      const flameColor = f < 2 ? C.flame3 : (f < 3 ? C.flame2 : C.flame1);
-      pxBlock(flameX, y + 3 * s + Math.sin(time + f) * 1.5, s, flameColor, flameAlpha);
-      pxBlock(flameX, y + 4 * s + Math.cos(time + f) * 1.5, s, flameColor, flameAlpha * 0.7);
+    // Arcs concentriques
+    for (let r = 50; r < maxRadius; r += 60) {
+      ctx.globalAlpha = 0.3;
+      ctx.strokeStyle = C.radar;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, r, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    
+    // Balayage rotatif lent
+    const sweepX = centerX + Math.cos(radarAngle) * maxRadius;
+    const sweepY = centerY + Math.sin(radarAngle) * maxRadius;
+    line(centerX, centerY, sweepX, sweepY, C.radarSweep, 0.5);
+    
+    // Point d'echo sur le balayage
+    ctx.globalAlpha = 0.7;
+    ctx.fillStyle = C.radarSweep;
+    ctx.beginPath();
+    ctx.arc(sweepX, sweepY, 3, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  
+  function drawScan(timestamp) {
+    // Bande lumineuse horizontale lente
+    const scanHeight = 3;
+    ctx.globalAlpha = 0.3;
+    ctx.fillStyle = C.scan;
+    ctx.fillRect(0, scanY, W, scanHeight);
+    
+    // Focus rectangulaire discret sur le badge
+    const badge = document.querySelector('.hero-badge');
+    if (badge) {
+      const r = badge.getBoundingClientRect();
+      const canvasRect = canvas.getBoundingClientRect();
+      const bx = r.left - canvasRect.left;
+      const by = r.top - canvasRect.top;
+      const bw = r.width;
+      const bh = r.height;
+      
+      ctx.globalAlpha = 0.15;
+      ctx.strokeStyle = C.scanActive;
+      ctx.lineWidth = 1;
+      ctx.strokeRect(bx - 5, by - 5, bw + 10, bh + 10);
     }
   }
   
@@ -513,84 +316,36 @@ document.getElementById('annee-footer').textContent = new Date().getFullYear();
   // ══  BOUCLE PRINCIPALE                                    ══
   // ══════════════════════════════════════════════════════════
   
-  function update() {
-    // Traînées
-    trails.forEach((t, i) => {
-      t.y += t.speed;
-      if (t.y > H + t.len) trails[i] = createTrail();
-    });
+  function update(timestamp) {
+    // Rotation radar (lente)
+    radarAngle += 0.005;
+    if (radarAngle > Math.PI * 2) radarAngle = 0;
     
-    // Objets spatiaux
-    spaceObjects.forEach(obj => {
-      obj.x += obj.vx;
-      obj.y += obj.vy;
-      
-      // Éviter la zone de texte (rebondir doucement)
-      if (isInTextZone(obj.x, obj.y, obj.size || 20)) {
-        const centerX = W / 2;
-        const centerY = H / 2;
-        const oldVx = obj.vx;
-        
-        // Inverser la direction pour sortir de la zone
-        if (obj.x < centerX) obj.vx = Math.abs(obj.vx) * -1;
-        else obj.vx = Math.abs(obj.vx);
-        if (obj.y < centerY) obj.vy = Math.abs(obj.vy) * -1;
-        else obj.vy = Math.abs(obj.vy);
-        
-        // Retourner le vaisseau si sa direction horizontale a changé
-        if (obj.type === 'ship' && Math.sign(oldVx) !== Math.sign(obj.vx)) {
-          obj.facingRight = obj.vx > 0;
-        }
-      }
-      
-      // Wrap around avec marge pour les gros objets
-      const margin = obj.size || 40;
-      if (obj.x < -margin) {
-        obj.x = W + margin/2;
-        if (obj.type === 'ship') obj.facingRight = obj.vx > 0;
-      }
-      if (obj.x > W + margin) {
-        obj.x = -margin/2;
-        if (obj.type === 'ship') obj.facingRight = obj.vx > 0;
-      }
-      if (obj.y < -margin) obj.y = H + margin/2;
-      if (obj.y > H + margin) obj.y = -margin/2;
-    });
+    // Scan vertical (lent)
+    scanY += 0.3;
+    if (scanY > H) scanY = 0;
   }
   
   function draw(timestamp) {
     ctx.clearRect(0, 0, W, H);
     
-    // Nébuleuses de fond (canvas offscreen pré-rendu)
-    ctx.globalAlpha = 1;
-    ctx.drawImage(nebulaCanvas, 0, 0);
+    // Fond quadrillage
+    drawGrid(timestamp);
     
-    // Étoiles
-    const now = timestamp * 0.001;
-    stars.forEach(s => {
-      const twinkle = Math.sin(now * s.speed * 80 + s.phase);
-      const alpha = 0.4 + (twinkle + 1) * 0.2 * s.bright;
-      pxBlock(s.x, s.y, s.size, s.color, alpha);
-    });
+    // Segments reliant les noeuds
+    drawEdges(timestamp);
     
-    // Traînées d'étoiles filantes
-    trails.forEach(t => {
-      for (let i = 0; i < t.len; i++) {
-        const ty = t.y - i;
-        if (ty >= 0 && ty < H) {
-          const trailAlpha = (1 - i / t.len) * 0.6;
-          pxBlock(t.x, ty, 2, t.color, trailAlpha);
-        }
-      }
-    });
+    // Paquets lumineux
+    drawPackets(timestamp);
     
-    // Objets spatiaux (triés par taille pour le depth, ordre calculé une fois dans init)
-    spaceObjects.forEach(obj => {
-      if (obj.type === 'sun') drawSun(obj, timestamp);
-      else if (obj.type === 'planet') drawPlanet(obj);
-      else if (obj.type === 'asteroid') drawAsteroid(obj);
-      else if (obj.type === 'ship') drawShip(obj, timestamp);
-    });
+    // Noeuds
+    drawNodes(timestamp);
+    
+    // Radar tactique
+    drawRadar(timestamp);
+    
+    // Scan de sécurité
+    drawScan(timestamp);
     
     ctx.globalAlpha = 1;
   }
@@ -756,3 +511,54 @@ document.querySelectorAll('.btn-copy').forEach(btn => {
     }
   });
 });
+
+// ── Toggle theme (mode clair/nuit) ──
+// Sauvegarde la préférence utilisateur dans localStorage
+// Prime sur prefers-color-scheme
+(function() {
+  const themeToggle = document.getElementById('theme-toggle');
+  if (!themeToggle) return;
+
+  const THEME_KEY = 'portfolio-theme';
+  const THEME_LIGHT = 'light';
+  const THEME_DARK = 'dark';
+
+  // Récupérer le thème sauvegardé ou utiliser la préférence système
+  function getInitialTheme() {
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    if (savedTheme === THEME_LIGHT || savedTheme === THEME_DARK) {
+      return savedTheme;
+    }
+    // Pas de préférence sauvegardée, utiliser prefers-color-scheme
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? THEME_LIGHT : THEME_DARK;
+  }
+
+  // Appliquer le thème
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem(THEME_KEY, theme);
+
+    // Mettre à jour l'aria-label du bouton
+    const newLabel = theme === THEME_LIGHT ? 'Passer en mode sombre' : 'Passer en mode clair';
+    themeToggle.setAttribute('aria-label', newLabel);
+  }
+
+  // Initialisation
+  const initialTheme = getInitialTheme();
+  setTheme(initialTheme);
+
+  // Toggle au clic
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === THEME_LIGHT ? THEME_DARK : THEME_LIGHT;
+    setTheme(newTheme);
+  });
+
+  // Écouter les changements de préférence système (seulement si pas de préférence manuelle)
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    // Ne changer que si l'utilisateur n'a pas de préférence manuelle
+    if (!localStorage.getItem(THEME_KEY)) {
+      setTheme(e.matches ? THEME_DARK : THEME_LIGHT);
+    }
+  });
+})();

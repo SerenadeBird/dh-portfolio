@@ -69,6 +69,7 @@ Objectif WCAG 2.1 AA. Concrètement :
 - `aria-label`, `aria-labelledby`, `role="list"` (workaround Safari sur les listes stylées)
 - SVG décoratifs avec `aria-hidden`, SVG porteurs de sens avec `aria-label`
 - **`prefers-reduced-motion` détecté automatiquement** : si le visiteur a activé l'option « Réduire les animations » dans les paramètres de son système (Windows, macOS, iOS, Android) ou de son navigateur, le site le détecte via l'API `matchMedia` et adapte le rendu : les animations CSS sont désactivées (y compris le blink du logo), le scroll smooth devient instantané, et le canvas spatial passe en mode statique. C'est un confort essentiel pour les personnes sensibles au mouvement (troubles vestibulaires, migraines).
+- **Mode clair/nuit** : le site supporte le mode clair et le mode sombre via `prefers-color-scheme` et un toggle manuel accessible dans la navbar. Le choix utilisateur est persisté via localStorage (pas de tracking, juste préférence locale). Le thème est cohérent sur toutes les sections (navbar, Hero, contact, footer, modales).
 - Styles d'impression fournis (oui, certains recruteurs impriment encore les CV)
 
 ## Structure
