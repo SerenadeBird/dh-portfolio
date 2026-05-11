@@ -2,7 +2,7 @@
 
 Portfolio de Dylan Holin - Développeur avancé & IA en recherche d'alternance à partir de juillet 2026.
 
-<img width="1841" height="938" alt="Portfolio Preview" src="https://github.com/user-attachments/assets/fab3311b-efb0-47ea-aeb4-893215123704" />
+<img width="1841" height="938" alt="Portfolio Preview" src="https://github.com/user-attachments/assets/fb77b0cd-6498-4115-9782-1e6ab627893c" />
 
 ## Voir le site
 
