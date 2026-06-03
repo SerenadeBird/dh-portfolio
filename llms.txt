@@ -18,13 +18,13 @@ Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux age
 ## Compétences techniques
 
 - **Langages** : Java, PHP (POO), Python, JavaScript, PowerShell, Bash
-- **Frameworks & architecture** : Spring Boot, Laravel, HTML5/CSS3, MVC/MVVM, UML, JDBC/DAO
+- **Frameworks & architecture** : Spring Boot, Laravel, HTML5/CSS3, MVC/MVVM, UML, JDBC/DAO, tests unitaires (JUnit), tests E2E, mocking
 - **Bases de données** : MySQL, PostgreSQL, modélisation BDD, introduction NoSQL
-- **Intelligence artificielle** : Prompt engineering, déploiement de LLM en local (Ollama), intégration de chatbots
+- **Intelligence artificielle** : Prompt engineering, workflows, déploiement IA en local
 - **Cybersécurité** : OWASP, développement sécurisé, hardening Windows, pare-feu/ACL, VPN
-- **Tests** : tests unitaires, tests E2E, mocking
-- **Outils & DevOps** : Git/GitHub, CI/CD, Figma, Agile/Scrum, Docker, virtualisation (VirtualBox, VMware)
+- **Outils & DevOps** : Git/GitHub, CI/CD, Figma (UI/UX), Agile/Scrum, Docker, virtualisation (VirtualBox, VMware), veille technologique
 - **Systèmes & réseaux** : Active Directory, Windows Server, TCP/IP, DNS, DHCP, VLAN, VPN, SSH, GLPI, WDS/MDT
+- **Support & Infrastructure** : Windows 10/11, distributions Linux, maintenance matérielle & diagnostic, installation/configuration postes, support utilisateur
 
 ## Projets
 
@@ -36,13 +36,13 @@ Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux age
 - **2025-2027** : Développeur avancé & IA (Bac+3, Titre Pro Niveau 6), Campus Numérique in the Alps, Alixan. 20 mois (8 intensifs + 12 en alternance).
 - **2024** : Technicien Supérieur Systèmes et Réseaux (Bac+2, Titre Pro Niveau 5), CCI de la Drôme, Valence.
 - **2022-2023** : Technicien en Assistance Informatique (Bac, Titre Pro Niveau 4), CCI de la Drôme, Valence.
-- **2019-2020** : BTS Gestion et comptabilité (1re année uniquement), Lycée Algoud-Laffemas, Valence. Réorientation assumée vers l'informatique.
-- **2017-2019** : BAC Pro Gestion administration (mention bien), Lycée Victor Hugo, Valence. Délégué 3 ans.
+- **2019-2020** : BTS Gestion et comptabilité (1re année uniquement), Lycée polyvalent Algoud-Laffemas, Valence. Réorientation assumée vers l'informatique.
+- **2017-2019** : BAC Pro Gestion administration (mention bien), Lycée Victor Hugo, Valence. Délégué 3 ans, dont 2 au conseil de discipline.
 
 ## Expériences
 
 - **2023-2024** : Acheteur / Vendeur, Cash Converters Europe, Guilherand-Granges. CDD ~2 ans. Relation client, négociation, SAV, gestion de caisse, encadrement d'une alternante et d'une stagiaire, gestion du coffre (~500 à 5 000 €).
-- **2017-2019** : Stages en association CLLAJ / SIAC, Valence. Accueil et information logement pour jeunes.
+- **2017-2019** : Stages dans une association (CLLAJ / SIAC), Valence. Accueil et information logement pour jeunes.
 - **2014-2015** : Modérateur bénévole sur un forum gaming (11 000+ utilisateurs).
 
 ## Ce que je recherche

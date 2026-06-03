@@ -2,6 +2,11 @@
 
 Portfolio de Dylan Holin - Développeur avancé & IA en recherche d'alternance à partir de juillet 2026.
 
+[![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-brightgreen?style=flat-square)](https://github.com/dylanholin/dh-portfolio)
+[![RGPD](https://img.shields.io/badge/RGPD-Compliant-blue?style=flat-square)](https://www.cnil.fr/)
+[![WCAG](https://img.shields.io/badge/WCAG-2.1_AA-8b5cf6?style=flat-square)](https://www.w3.org/WAI/WCAG21/quickref/)
+[![No Tracking](https://img.shields.io/badge/Tracking-None-critical?style=flat-square)](https://github.com/dylanholin/dh-portfolio)
+
 <img width="1841" height="938" alt="Portfolio Preview" src="https://github.com/user-attachments/assets/fb77b0cd-6498-4115-9782-1e6ab627893c" />
 
 ## Voir le site
@@ -19,14 +24,16 @@ Portfolio de Dylan Holin - Développeur avancé & IA en recherche d'alternance �
 
 Parce que votre vie privée mérite mieux et que la sécurité ne doit pas être une option.
 
-Ce portfolio applique les bonnes pratiques de sécurité et de confidentialité RGPD dès la première ligne de code, le tracking est tout simplement banni et le portfolio est conforme aux standards 2026
+Ce portfolio applique les bonnes pratiques de sécurité et de confidentialité RGPD dès la première ligne de code, le tracking est tout simplement banni et le portfolio applique les recommandations OWASP et RGPD en vigueur
 
 ### Ce qui est sécurisé
 
 **Content-Security-Policy strict:**
+- `default-src 'self'` - Politique par défaut : ressources locales uniquement
 - `script-src 'self'` - Scripts uniquement depuis le domaine (bye bye XSS)
 - `style-src 'self'` - Styles externes uniquement (variables CSS, pas de inline)
 - `img-src 'self' data:` - Images locales uniquement
+- `font-src 'self'` - Polices locales uniquement (variables CSS, pas de Google Fonts)
 - `frame-ancestors 'none'` - Protection contre clickjacking
 - `connect-src 'self'` - Connexions uniquement vers le domaine
 - `base-uri 'self'` - Empêche le détournement de l'URL de base du document
@@ -66,11 +73,9 @@ Objectif WCAG 2.1 AA. Concrètement :
 - Skip link vers le contenu principal
 - Navigation clavier complète + focus visible partout
 - Focus trap dans les modales (mentions légales, confidentialité)
-- `aria-label`, `aria-labelledby`, `role="list"` (workaround Safari sur les listes stylées)
-- SVG décoratifs avec `aria-hidden`, SVG porteurs de sens avec `aria-label`
 - **`prefers-reduced-motion` détecté automatiquement** : si le visiteur a activé l'option « Réduire les animations » dans les paramètres de son système (Windows, macOS, iOS, Android) ou de son navigateur, le site le détecte via l'API `matchMedia` et adapte le rendu : les animations CSS sont désactivées (y compris le blink du logo), le scroll smooth devient instantané, et le canvas spatial passe en mode statique. C'est un confort essentiel pour les personnes sensibles au mouvement (troubles vestibulaires, migraines).
-- **Mode clair/nuit** : le site supporte le mode clair et le mode sombre via `prefers-color-scheme` et un toggle manuel accessible dans la navbar. Le choix utilisateur est persisté via localStorage (pas de tracking, juste préférence locale). Le thème est cohérent sur toutes les sections (navbar, Hero, contact, footer, modales).
-- Styles d'impression fournis (oui, certains recruteurs impriment encore les CV)
+- **Mode clair/nuit** : le site supporte le mode clair et le mode sombre via `prefers-color-scheme` et un toggle manuel accessible dans la navbar. Le choix utilisateur est persisté via localStorage (préférence locale). Le thème est cohérent sur toutes les sections (navbar, Hero, contact, footer, modales).
+- Styles d'impression fournis PDF
 
 ## Structure
 
@@ -80,8 +85,8 @@ dh-portfolio/
 ├── assets/
 │   ├── css/style.css    # Tous les styles (variables dans :root, responsive en fin)
 │   ├── js/script.js     # Nav, scroll, animations, canvas spatial, modales
-│   ├── images/          # favicon.svg, og-image
-│   └── docs/            # PDF officiels d'alternance (programme, planning, coût)
+│   ├── images/          # favicon.svg, og-image (png + svg)
+│   └── docs/            # PDF officiels (CV, programme, planning, coût)
 ├── llms.txt             # Résumé structuré pour les IA externes (recruteurs)
 ├── AGENTS.md            # Instructions pour les IA développeurs (Cascade, Cursor, etc.)
 └── README.md            # Ce fichier
