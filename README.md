@@ -17,7 +17,7 @@ Portfolio de Dylan Holin - Développeur avancé & IA en recherche d'alternance �
 
 - HTML5 sémantique & accessible (WCAG 2.1 AA visé)
 - CSS3 (custom properties, grid, `@keyframes`, media queries, `prefers-reduced-motion`)
-- JavaScript vanilla ES6+ (IIFE, IntersectionObserver, canvas 2D pour l'animation spatiale)
+- JavaScript vanilla ES6+ (IIFE, IntersectionObserver, toggle de thème, modales)
 - **Zéro dépendance externe, zéro build, zéro cookie**
 
 ## Sécurité et Confidentialité
@@ -84,7 +84,7 @@ dh-portfolio/
 ├── index.html           # Page unique (toutes les sections)
 ├── assets/
 │   ├── css/style.css    # Tous les styles (variables dans :root, responsive en fin)
-│   ├── js/script.js     # Nav, scroll, animations, canvas spatial, modales
+│   ├── js/script.js     # Nav, scroll, animations, toggle de thème, modales
 │   ├── images/          # favicon.svg, og-image (png + svg)
 │   └── docs/            # PDF officiels (CV, programme, planning, coût)
 ├── llms.txt             # Résumé structuré pour les IA externes (recruteurs)
