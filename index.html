@@ -313,11 +313,32 @@
 
             <article class="projet-carte" data-animate data-animate-delay="3">
                 <div class="projet-header">
-                    <h3 class="projet-titre">En construction</h3>
+                    <h3 class="projet-titre">DevFolio</h3>
                 </div>
-                <p class="projet-description projet-placeholder">
-                    Projet à venir
+                <p class="projet-objectif">
+                    <strong>Objectif</strong>
+                    Application portfolio étudiant (Spring Boot 3.5 + Vue 3 + MariaDB) servant de support
+                    pédagogique pour la sécurisation OWASP Top 10 2025 et la mise en place d'un pipeline CI/CD complet.
                 </p>
+                <p class="projet-realisation">
+                    <strong>Réalisation</strong>
+                    Audit de sécurité complet d'une application vulnérable, correction des failles OWASP Top 10 2025
+                    (injection SQL, JWT, SSRF, rate limiting, blacklist de tokens). Containerisation Docker avec
+                    reverse proxy Nginx (TLS auto-signé). Pipeline CI/CD GitHub Actions : build, scan Semgrep (SAST),
+                    scan Trivy (images Docker, 36 CVE résolus), déploiement automatique sur VPS via SSH.
+                    Tests automatisés backend (JUnit 5 + Mockito) et frontend (Vitest). Durcissement VPS :
+                    fail2ban, UFW, SSH key-based, compte deploy non-root.
+                </p>
+                <ul class="projet-stack competence-liste" role="list">
+                    <li class="badge">Spring Boot</li>
+                    <li class="badge">Vue 3</li>
+                    <li class="badge">MariaDB</li>
+                    <li class="badge">Docker</li>
+                    <li class="badge">Java 21</li>
+                    <li class="badge">GitHub Actions</li>
+                    <li class="badge">OWASP</li>
+                </ul>
+                <a href="https://github.com/dylanholin/cybersec-bad-folio" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </article>
 
         </div>
