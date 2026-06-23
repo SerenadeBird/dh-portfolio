@@ -50,6 +50,33 @@ window.addEventListener('scroll', () => {
 // ── Année dynamique footer ──
 document.getElementById('annee-footer').textContent = new Date().getFullYear();
 
+// ── Deplier/reduire le texte "Realisation" des cartes projets ──
+const projetRealisations = document.querySelectorAll('.projet-realisation');
+const checkDebordement = () => {
+  projetRealisations.forEach(p => {
+    const btn = p.parentElement.querySelector('.projet-deplier');
+    if (!btn) return;
+    if (p.scrollHeight > p.clientHeight + 2) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+      p.classList.add('expanded');
+    }
+  });
+};
+checkDebordement();
+window.addEventListener('resize', checkDebordement, { passive: true });
+
+document.querySelectorAll('.projet-deplier').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const p = btn.parentElement.querySelector('.projet-realisation');
+    const isExpanded = p.classList.toggle('expanded');
+    btn.setAttribute('aria-expanded', isExpanded);
+    const label = btn.querySelector('.deplier-label');
+    if (label) label.textContent = isExpanded ? 'Reduire' : 'Lire la suite';
+  });
+});
+
 // ── Modal RGPD (avec focus trap pour accessibilité) ──
 function openModal(target) {
   const overlay = document.createElement('div');
