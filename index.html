@@ -386,6 +386,41 @@
                 <a href="https://github.com/dylanholin/winmorph" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </article>
 
+            <article class="projet-carte" data-animate data-animate-delay="2">
+                <div class="projet-header">
+                    <h3 class="projet-titre">SquareGames</h3>
+                </div>
+                <p class="projet-objectif">
+                    <strong>Objectif</strong>
+                    Application de jeux de plateau (TicTacToe, Puissance 4, Taquin) développée en Java 21
+                    avec Spring Boot 3.5. Projet pédagogique progressif visant à monter en compétence
+                    sur les bonnes pratiques back-end, l'architecture logicielle et la sécurisation d'API.
+                </p>
+                <p class="projet-realisation">
+                    <strong>Réalisation</strong>
+                    Deux applications Spring Boot indépendantes (microservices) : api de gestion des parties
+                    sur le port 8080 et user-api de gestion des utilisateurs sur le port 8081. Architecture
+                    hexagonale (Ports & Adapters) dans la feature game, avec le cœur métier isolé des
+                    détails techniques (JPA, REST, JWT). Authentification stateless par JWT partagé entre
+                    les deux services. Persistance H2 en fichier par défaut, avec profil MySQL disponible
+                    pour la production.
+                </p>
+                <button class="projet-deplier" aria-expanded="false" type="button">
+                    <span class="deplier-label">Lire la suite</span>
+                    <svg class="deplier-icone" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="projet-stack competence-liste" role="list">
+                    <li class="badge">Java 21</li>
+                    <li class="badge">Spring Boot 3.5</li>
+                    <li class="badge">Spring Security</li>
+                    <li class="badge">JWT</li>
+                    <li class="badge">Architecture hexagonale</li>
+                    <li class="badge">H2</li>
+                    <li class="badge">Maven</li>
+                </ul>
+                <a href="https://github.com/dylanholin/SquareGames" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </article>
+
         </div>
     </div>
 </section>
