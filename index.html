@@ -252,7 +252,7 @@
     <div class="section-inner">
         <div class="section-header" data-animate>
             <span class="section-label">// 03</span>
-            <h2 id="titre-projets" class="section-titre">Projets sélectionnés</h2>
+            <h2 id="titre-projets" class="section-titre">Projets Github</h2>
         </div>
         <div class="projets-grille">
 
@@ -313,7 +313,7 @@
 
             <article class="projet-carte" data-animate data-animate-delay="3">
                 <div class="projet-header">
-                    <h3 class="projet-titre">DevFolio</h3>
+                    <h3 class="projet-titre">cybersec-bad-folio</h3>
                 </div>
                 <p class="projet-objectif">
                     <strong>Objectif</strong>
@@ -326,8 +326,9 @@
                     (injection SQL, JWT, SSRF, rate limiting, blacklist de tokens). Containerisation Docker avec
                     reverse proxy Nginx (TLS auto-signé). Pipeline CI/CD GitHub Actions : build, scan Semgrep (SAST),
                     scan Trivy (images Docker, 36 CVE résolus), déploiement automatique sur VPS via SSH.
-                    Tests automatisés backend (JUnit 5 + Mockito) et frontend (Vitest). Durcissement VPS :
-                    fail2ban, UFW, SSH key-based, compte deploy non-root.
+                    Tests automatisés backend (JUnit 5 + Mockito) et frontend (Vitest). Site déployé et pleinement
+                    fonctionnel en production. Durcissement VPS : fail2ban, UFW, SSH key-based, compte deploy non-root.
+                    fail2ban a bloqué plus de 1000 connexions au VPS en 48h, confirmant l'efficacité du durcissement.
                 </p>
                 <ul class="projet-stack competence-liste" role="list">
                     <li class="badge">Spring Boot</li>
@@ -339,6 +340,34 @@
                     <li class="badge">OWASP</li>
                 </ul>
                 <a href="https://github.com/dylanholin/cybersec-bad-folio" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </article>
+
+            <article class="projet-carte" data-animate data-animate-delay="1">
+                <div class="projet-header">
+                    <h3 class="projet-titre">WinMorph</h3>
+                </div>
+                <p class="projet-objectif">
+                    <strong>Objectif</strong>
+                    Outils natifs Windows pour brouiller les empreintes système et réseau (fingerprinting)
+                    via scripts batch et PowerShell, déployables automatiquement via GPO ou planificateur de tâches.
+                </p>
+                <p class="projet-realisation">
+                    <strong>Réalisation</strong>
+                    Scripts de randomisation d'adresse MAC, d'IPv4, de nom de PC, de MachineGuid et d'identifiants
+                    de télémétrie Microsoft. Gestionnaire graphique (Windows Forms) pour inscrire les scripts en GPO
+                    Startup / Shutdown / Logon / Logoff ou en tâches planifiées, avec détection de doublons et
+                    exécution automatique de gpupdate /force. Zéro dépendance externe, mode silencieux sans
+                    interaction utilisateur. Projet basé sur des scripts réalisés pendant ma formation TSSR,
+                    actuellement en phase de test.
+                </p>
+                <ul class="projet-stack competence-liste" role="list">
+                    <li class="badge">PowerShell</li>
+                    <li class="badge">Batch</li>
+                    <li class="badge">Windows Forms</li>
+                    <li class="badge">GPO</li>
+                    <li class="badge">Registre Windows</li>
+                </ul>
+                <a href="https://github.com/dylanholin/winmorph" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </article>
 
         </div>
