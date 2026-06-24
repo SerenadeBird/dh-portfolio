@@ -1520,7 +1520,6 @@ img { max-width: 100%; display: block; }
 }
 .contact-container {
   max-width: 900px;
-  width: 100%;
   margin: 0 auto;
   padding: var(--space-3xl) var(--space-xl);
   text-align: center;
