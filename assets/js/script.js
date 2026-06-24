@@ -54,6 +54,7 @@ document.getElementById('annee-footer').textContent = new Date().getFullYear();
 const projetRealisations = document.querySelectorAll('.projet-realisation');
 const checkDebordement = () => {
   projetRealisations.forEach(p => {
+    if (p.classList.contains('expanded')) return;
     const btn = p.parentElement.querySelector('.projet-deplier');
     if (!btn) return;
     if (p.scrollHeight > p.clientHeight + 2) {
