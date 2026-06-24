@@ -1920,6 +1920,7 @@ a:focus-visible, .btn:focus-visible, .btn-email:focus-visible, .btn-copy:focus-v
   .formation-actuelle .formation-periode { color: var(--accent); }
 
   .contact-container { padding: var(--space-2xl) var(--space-md); }
+  .contact-email { grid-template-columns: 1fr; }
   .btn { min-height: 44px; }
   .btn-email { padding: 0.85rem 1.5rem; font-size: 0.9rem; min-height: 44px; }
   .apropos-contenu { padding: var(--space-lg); }
