@@ -1502,12 +1502,6 @@ img { max-width: 100%; display: block; }
   border-top: 1px solid var(--border);
   position: relative;
   overflow: hidden;
-  min-height: calc(100vh - var(--nav-height));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  scroll-margin-top: var(--nav-height);
 }
 .section-contact::before {
   content: '';
@@ -1884,7 +1878,6 @@ a:focus-visible, .btn:focus-visible, .btn-email:focus-visible, .btn-copy:focus-v
   }
 
   .section { padding: var(--space-2xl) var(--space-md); }
-  .section-contact { min-height: calc(100svh - var(--nav-height)); }
   .hero { min-height: 100svh; padding: calc(var(--nav-height) + var(--space-xl)) var(--space-md) var(--space-2xl); }
   .hero-description { font-size: 1.05rem; }
   .apropos-contenu p { font-size: 1rem; line-height: 1.7; }
