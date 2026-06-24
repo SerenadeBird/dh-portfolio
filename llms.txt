@@ -28,11 +28,11 @@ Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux age
 
 ## Projets
 
-- [PipBoys Quest](https://github.com/dylanholin/java_game_PipBoysQuest) : Jeu d'aventure tour par tour en Java (Swing + MySQL), inspiré D&D / Fallout. Développé avec assistance IA.
-- [Portfolio dh-portfolio](https://github.com/dylanholin/dh-portfolio) : Ce site. HTML/CSS/JS vanilla, zéro dépendance, CSP stricte, conforme RGPD, hébergé sur GitHub Pages.
 - [cybersec-bad-folio](https://github.com/dylanholin/cybersec-bad-folio) : Application portfolio étudiant (Spring Boot 3.5 + Vue 3 + MariaDB). Audit et correction OWASP Top 10 2025, CI/CD GitHub Actions, containerisation Docker. Site déployé et fonctionnel en production, fail2ban a bloqué plus de 1000 connexions au VPS en 48h.
 - [WinMorph](https://github.com/dylanholin/winmorph) : Outils natifs Windows (PowerShell / Batch) pour brouiller les empreintes système et réseau. Déploiement via GPO ou planificateur de tâches. Basé sur des scripts de formation TSSR, en phase de test.
+- [PipBoys Quest](https://github.com/dylanholin/java_game_PipBoysQuest) : Jeu d'aventure tour par tour en Java (Swing + MySQL), inspiré D&D / Fallout. Développé avec assistance IA.
 - [SquareGames](https://github.com/dylanholin/SquareGames) : Application de jeux de plateau (TicTacToe, Puissance 4, Taquin) en Java 21 + Spring Boot 3.5. Architecture hexagonale (Ports & Adapters), microservices, authentification JWT, base H2.
+- [Portfolio dh-portfolio](https://github.com/dylanholin/dh-portfolio) : Ce site. HTML/CSS/JS vanilla, zéro dépendance, CSP stricte, conforme RGPD, hébergé sur GitHub Pages.
 
 ## Parcours de formation
 

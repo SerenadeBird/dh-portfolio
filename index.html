@@ -254,72 +254,10 @@
             <span class="section-label">// 03</span>
             <h2 id="titre-projets" class="section-titre">Projets Github</h2>
         </div>
-        <div class="projets-grille">
+        <div class="projets-wrapper">
+            <div class="projets-grille" id="projets-grille">
 
             <article class="projet-carte" data-animate data-animate-delay="1">
-                <div class="projet-header">
-                    <h3 class="projet-titre">PipBoys Quest</h3>
-                </div>
-                <p class="projet-objectif">
-                    <strong>Objectif</strong>
-                    Jeu d'aventure tour par tour en Java inspiré des jeux de rôle Donjons &amp; Dragons,
-                    dans une ambiance Fallout : progression sur un plateau de 64 cases,
-                    combats interactifs, loot d'armes et de potions, décisions tactiques et progression du héros.
-                </p>
-                <p class="projet-realisation">
-                    <strong>Réalisation</strong>
-                    Interface texte avec fenêtre Swing style Pip-Boy. Système de combat tour par tour
-                    (attaquer / tenter de fuir), loot avec confirmation, rencontres aléatoires d'ennemis.
-                    Sauvegarde MySQL quand la base est disponible, sinon mode hors-ligne sans persistance BDD.
-                    Projet réalisé avec l'assistance d'outils IA pour accélérer le développement.
-                </p>
-                <button class="projet-deplier" aria-expanded="false" type="button">
-                    <span class="deplier-label">Lire la suite</span>
-                    <svg class="deplier-icone" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <ul class="projet-stack competence-liste" role="list">
-                    <li class="badge">Java</li>
-                    <li class="badge">Swing</li>
-                    <li class="badge">MySQL</li>
-                    <li class="badge">HTML</li>
-                    <li class="badge">Shell / Batch</li>
-                    <li class="badge">IA-assisted</li>
-                </ul>
-                <a href="https://github.com/dylanholin/java_game_PipBoysQuest" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            </article>
-
-            <article class="projet-carte" data-animate data-animate-delay="2">
-                <div class="projet-header">
-                    <h3 class="projet-titre">Portfolio</h3>
-                </div>
-                <p class="projet-objectif">
-                    <strong>Objectif</strong>
-                    Portfolio personnel de développeur ici présent, conçu pour présenter mon parcours, mes compétences
-                    et mes projets dans le cadre de ma recherche d'alternance.
-                </p>
-                <p class="projet-realisation">
-                    <strong>Réalisation</strong>
-                    Site statique HTML/CSS/JS vanilla, sans framework ni dépendance externe.
-                    Sécurité renforcée dès la conception : Content-Security-Policy strict, en-têtes de protection
-                    (anti-XSS, anti-clickjacking, MIME sniffing), Referrer-Policy et Permissions-Policy.
-                    Confidentialité RGPD : zéro cookie, zéro tracking, zéro analytics tiers, polices système
-                    (pas de Google Fonts), Déployé sur GitHub.
-                </p>
-                <button class="projet-deplier" aria-expanded="false" type="button">
-                    <span class="deplier-label">Lire la suite</span>
-                    <svg class="deplier-icone" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <ul class="projet-stack competence-liste" role="list">
-                    <li class="badge">HTML</li>
-                    <li class="badge">CSS</li>
-                    <li class="badge">JavaScript</li>
-                    <li class="badge">CSP</li>
-                    <li class="badge">RGPD</li>
-                </ul>
-                <a href="https://github.com/dylanholin/dh-portfolio" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            </article>
-
-            <article class="projet-carte" data-animate data-animate-delay="3">
                 <div class="projet-header">
                     <h3 class="projet-titre">cybersec-bad-folio</h3>
                 </div>
@@ -354,7 +292,7 @@
                 <a href="https://github.com/dylanholin/cybersec-bad-folio" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </article>
 
-            <article class="projet-carte" data-animate data-animate-delay="1">
+            <article class="projet-carte" data-animate data-animate-delay="2">
                 <div class="projet-header">
                     <h3 class="projet-titre">WinMorph</h3>
                 </div>
@@ -386,7 +324,39 @@
                 <a href="https://github.com/dylanholin/winmorph" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </article>
 
-            <article class="projet-carte" data-animate data-animate-delay="2">
+            <article class="projet-carte" data-animate data-animate-delay="3">
+                <div class="projet-header">
+                    <h3 class="projet-titre">PipBoys Quest</h3>
+                </div>
+                <p class="projet-objectif">
+                    <strong>Objectif</strong>
+                    Jeu d'aventure tour par tour en Java inspiré des jeux de rôle Donjons &amp; Dragons,
+                    dans une ambiance Fallout : progression sur un plateau de 64 cases,
+                    combats interactifs, loot d'armes et de potions, décisions tactiques et progression du héros.
+                </p>
+                <p class="projet-realisation">
+                    <strong>Réalisation</strong>
+                    Interface texte avec fenêtre Swing style Pip-Boy. Système de combat tour par tour
+                    (attaquer / tenter de fuir), loot avec confirmation, rencontres aléatoires d'ennemis.
+                    Sauvegarde MySQL quand la base est disponible, sinon mode hors-ligne sans persistance BDD.
+                    Projet réalisé avec l'assistance d'outils IA pour accélérer le développement.
+                </p>
+                <button class="projet-deplier" aria-expanded="false" type="button">
+                    <span class="deplier-label">Lire la suite</span>
+                    <svg class="deplier-icone" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="projet-stack competence-liste" role="list">
+                    <li class="badge">Java</li>
+                    <li class="badge">Swing</li>
+                    <li class="badge">MySQL</li>
+                    <li class="badge">HTML</li>
+                    <li class="badge">Shell / Batch</li>
+                    <li class="badge">IA-assisted</li>
+                </ul>
+                <a href="https://github.com/dylanholin/java_game_PipBoysQuest" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </article>
+
+            <article class="projet-carte" data-animate data-animate-delay="1">
                 <div class="projet-header">
                     <h3 class="projet-titre">SquareGames</h3>
                 </div>
@@ -421,6 +391,39 @@
                 <a href="https://github.com/dylanholin/SquareGames" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </article>
 
+            <article class="projet-carte" data-animate data-animate-delay="2">
+                <div class="projet-header">
+                    <h3 class="projet-titre">Portfolio</h3>
+                </div>
+                <p class="projet-objectif">
+                    <strong>Objectif</strong>
+                    Portfolio personnel de développeur ici présent, conçu pour présenter mon parcours, mes compétences
+                    et mes projets dans le cadre de ma recherche d'alternance.
+                </p>
+                <p class="projet-realisation">
+                    <strong>Réalisation</strong>
+                    Site statique HTML/CSS/JS vanilla, sans framework ni dépendance externe.
+                    Sécurité renforcée dès la conception : Content-Security-Policy strict, en-têtes de protection
+                    (anti-XSS, anti-clickjacking, MIME sniffing), Referrer-Policy et Permissions-Policy.
+                    Confidentialité RGPD : zéro cookie, zéro tracking, zéro analytics tiers, polices système
+                    (pas de Google Fonts), Déployé sur GitHub.
+                </p>
+                <button class="projet-deplier" aria-expanded="false" type="button">
+                    <span class="deplier-label">Lire la suite</span>
+                    <svg class="deplier-icone" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="projet-stack competence-liste" role="list">
+                    <li class="badge">HTML</li>
+                    <li class="badge">CSS</li>
+                    <li class="badge">JavaScript</li>
+                    <li class="badge">CSP</li>
+                    <li class="badge">RGPD</li>
+                </ul>
+                <a href="https://github.com/dylanholin/dh-portfolio" target="_blank" rel="noopener noreferrer" class="projet-cta">Voir la page GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </article>
+
+            </div>
+            <nav class="projets-pagination" id="projets-pagination" aria-label="Pagination des projets"></nav>
         </div>
     </div>
 </section>

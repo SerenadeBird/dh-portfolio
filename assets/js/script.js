@@ -11,14 +11,42 @@ window.addEventListener('scroll', () => {
 // ── Mobile menu ──
 const menuBtn = document.getElementById('menu-btn');
 const navLiens = document.getElementById('nav-liens');
+let menuOverlay = null;
+
+const closeMenu = () => {
+  navLiens.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('menu-open');
+  if (menuOverlay) {
+    menuOverlay.remove();
+    menuOverlay = null;
+  }
+};
+
+const openMenu = () => {
+  navLiens.classList.add('open');
+  menuBtn.setAttribute('aria-expanded', 'true');
+  document.body.classList.add('menu-open');
+  menuOverlay = document.createElement('div');
+  menuOverlay.className = 'menu-overlay';
+  menuOverlay.addEventListener('click', closeMenu, { once: true });
+  document.body.appendChild(menuOverlay);
+};
+
 menuBtn.addEventListener('click', () => {
-  const isOpen = navLiens.classList.toggle('open');
-  menuBtn.setAttribute('aria-expanded', isOpen);
+  const isOpen = navLiens.classList.contains('open');
+  if (isOpen) closeMenu(); else openMenu();
 });
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && navLiens.classList.contains('open')) {
+    closeMenu();
+  }
+});
+
 navLiens.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
-    navLiens.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded', 'false');
+    closeMenu();
   });
 });
 
@@ -37,13 +65,19 @@ animatedEls.forEach(el => observer.observe(el));
 // ── Active nav link on scroll ──
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-liens a[href^="#"]');
+let navTick = false;
 window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(section => {
-    if (window.scrollY >= section.offsetTop - 120) current = section.id;
-  });
-  navLinks.forEach(link => {
-    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  if (navTick) return;
+  navTick = true;
+  requestAnimationFrame(() => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) current = section.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+    navTick = false;
   });
 }, { passive: true });
 
@@ -55,6 +89,7 @@ const projetRealisations = document.querySelectorAll('.projet-realisation');
 const checkDebordement = () => {
   projetRealisations.forEach(p => {
     if (p.classList.contains('expanded')) return;
+    if (p.closest('.projet-carte.hidden')) return;
     const btn = p.parentElement.querySelector('.projet-deplier');
     if (!btn) return;
     if (p.scrollHeight > p.clientHeight + 2) {
@@ -84,6 +119,7 @@ function openModal(target) {
   overlay.className = 'modal-overlay';
   document.body.appendChild(overlay);
   target.classList.add('modal-visible');
+  document.body.style.overflow = 'hidden';
   
   // Sauvegarder l'élément qui avait le focus
   const previousFocus = document.activeElement;
@@ -98,6 +134,7 @@ function openModal(target) {
   
   const close = () => {
     target.classList.remove('modal-visible');
+    document.body.style.overflow = '';
     if (document.body.contains(overlay)) document.body.removeChild(overlay);
     document.removeEventListener('keydown', handleKeydown);
     // Restaurer le focus
@@ -213,4 +250,54 @@ document.querySelectorAll('.btn-copy').forEach(btn => {
       setTheme(e.matches ? THEME_DARK : THEME_LIGHT);
     }
   });
+})();
+
+// ── Bouton "Voir plus de projets" (4 visibles initialement) ──
+(function() {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const INITIAL_COUNT = isMobile ? 2 : 4;
+  const LOAD_COUNT = isMobile ? 2 : 4;
+  const grid = document.getElementById('projets-grille');
+  if (!grid) return;
+
+  const cards = Array.from(grid.querySelectorAll('.projet-carte'));
+  if (cards.length <= INITIAL_COUNT) return;
+
+  let visibleCount = INITIAL_COUNT;
+
+  const showCards = (count) => {
+    cards.forEach((card, index) => {
+      card.classList.toggle('hidden', index >= count);
+    });
+    checkDebordement();
+  };
+
+  const btnContainer = document.getElementById('projets-pagination');
+  if (!btnContainer) return;
+
+  const srAnnounce = document.createElement('span');
+  srAnnounce.setAttribute('aria-live', 'polite');
+  srAnnounce.className = 'sr-only';
+  btnContainer.appendChild(srAnnounce);
+
+  const loadMoreBtn = document.createElement('button');
+  loadMoreBtn.type = 'button';
+  loadMoreBtn.className = 'projets-load-more';
+  loadMoreBtn.textContent = 'Voir plus de projets';
+  loadMoreBtn.setAttribute('aria-label', 'Afficher plus de projets');
+
+  loadMoreBtn.addEventListener('click', () => {
+    const previousCount = visibleCount;
+    visibleCount = Math.min(visibleCount + LOAD_COUNT, cards.length);
+    showCards(visibleCount);
+    const newlyShown = visibleCount - previousCount;
+    srAnnounce.textContent = newlyShown + ' projet' + (newlyShown > 1 ? 's' : '') + ' supplementaire' + (newlyShown > 1 ? 's' : '') + ' affiche' + (newlyShown > 1 ? 's' : '');
+    if (visibleCount >= cards.length) {
+      loadMoreBtn.classList.add('hidden');
+    }
+  });
+
+  btnContainer.appendChild(loadMoreBtn);
+  btnContainer.classList.add('visible');
+  showCards(visibleCount);
 })();
