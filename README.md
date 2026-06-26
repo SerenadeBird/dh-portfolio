@@ -7,7 +7,7 @@ Portfolio de Dylan Holin - Développeur avancé & IA en recherche d'alternance �
 [![WCAG](https://img.shields.io/badge/WCAG-2.1_AA-8b5cf6?style=flat-square)](https://www.w3.org/WAI/WCAG21/quickref/)
 [![No Tracking](https://img.shields.io/badge/Tracking-None-critical?style=flat-square)](https://github.com/dylanholin/dh-portfolio)
 
-<img width="1841" height="938" alt="Portfolio Preview" src="https://github.com/user-attachments/assets/fb77b0cd-6498-4115-9782-1e6ab627893c" />
+<img width="1702" height="908" alt="image" src="https://github.com/user-attachments/assets/2de3c4c2-7db2-44c9-a934-a7b42185feb6" />
 
 ## Voir le site
 
