@@ -1,6 +1,6 @@
 # dh-portfolio
 
-Portfolio de Dylan Holin - Développeur avancé & IA en recherche d'alternance à partir de juillet 2026.
+Portfolio de Dylan Holin - Développeur avancé & IA. Le socle intensif de formation se termine fin juin 2026, recherche active d'une alternance Développeur & IA de 12 mois.
 
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-brightgreen?style=flat-square)](https://github.com/dylanholin/dh-portfolio)
 [![RGPD](https://img.shields.io/badge/RGPD-Compliant-blue?style=flat-square)](https://www.cnil.fr/)

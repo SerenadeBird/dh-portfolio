@@ -1,6 +1,6 @@
 # Dylan Holin · Développeur avancé & IA
 
-> Portfolio de Dylan Holin, étudiant en formation Bac+3 « Développeur avancé & IA » au Campus Numérique in the Alps (Alixan, France). En recherche d'une alternance de 12 mois à partir du 1er juillet 2026. Profil double : développement full-stack (Java/Spring Boot, PHP/Laravel, JavaScript, Python) et systèmes/réseaux/cybersécurité.
+> Portfolio de Dylan Holin, étudiant en formation Bac+3 « Développeur avancé & IA » au Campus Numérique in the Alps (Alixan, France). Le socle intensif de formation se termine le 29 juin 2026, recherche active d'une alternance Développeur & IA de 12 mois. Profil double : développement full-stack (Java/Spring Boot, PHP/Laravel, JavaScript, Python) et systèmes/réseaux/cybersécurité.
 
 Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux agents IA un résumé structuré et fiable du candidat. Source de vérité : [dylanholin.github.io/dh-portfolio](https://dylanholin.github.io/dh-portfolio).
 
@@ -8,7 +8,7 @@ Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux age
 
 - **Nom** : Dylan Holin
 - **Statut** : Étudiant en formation, en recherche d'alternance
-- **Disponibilité** : 1er juillet 2026
+- **Disponibilité** : dès maintenant (recherche active jusqu'au 11 septembre 2026)
 - **Durée recherchée** : 12 mois d'alternance
 - **Formation en cours** : Développeur avancé & IA, Titre Professionnel Niveau 6 (Bac+3), Campus Numérique in the Alps, Alixan (26)
 - **Localisation** : Drôme / Ardèche (Valence, Guilherand-Granges), mobilité région Auvergne-Rhône-Alpes
@@ -17,12 +17,12 @@ Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux age
 
 ## Compétences techniques
 
-- **Langages** : Java, PHP (POO), Python, JavaScript, PowerShell, Bash
-- **Frameworks & architecture** : Spring Boot, Laravel, HTML5/CSS3, MVC/MVVM, UML, JDBC/DAO, tests unitaires (JUnit), tests E2E, mocking
+- **Langages & frameworks** : Java, PHP (POO), JavaScript, Python, HTML5/CSS3, Spring Boot, Laravel, PowerShell, Bash
+- **Architecture & patterns** : MVC/MVVM, UML, JDBC/DAO
 - **Bases de données** : MySQL, PostgreSQL, modélisation BDD, introduction NoSQL
 - **Intelligence artificielle** : Prompt engineering, workflows, déploiement IA en local
 - **Cybersécurité** : OWASP, développement sécurisé, hardening Windows, pare-feu/ACL, VPN
-- **Outils & DevOps** : Git/GitHub, CI/CD, Figma (UI/UX), Agile/Scrum, Docker, virtualisation (VirtualBox, VMware), veille technologique
+- **Outils & méthodes** : Git/GitHub, CI/CD, Docker, virtualisation (VirtualBox, VMware), Figma (UI/UX), Agile/Scrum, tests unitaires (JUnit), tests E2E, mocking, veille technologique
 - **Systèmes & réseaux** : Active Directory, Windows Server, TCP/IP, DNS, DHCP, VLAN, VPN, SSH, GLPI, WDS/MDT
 - **Support & Infrastructure** : Windows 10/11, distributions Linux, maintenance matérielle & diagnostic, installation/configuration postes, support utilisateur
 
@@ -50,7 +50,7 @@ Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux age
 
 ## Ce que je recherche
 
-Une alternance de 12 mois (juillet 2026 à juillet 2027) dans une équipe de développement où je peux contribuer concrètement sur du full-stack (back Java/PHP ou front JS) avec ou sans dimension IA/cybersécurité. Profil rigoureux, autonome, avec une vision complète infra + applicatif grâce au parcours TAI/TSSR.
+Une alternance de 12 mois en Développeur & IA dans une équipe de développement où je peux contribuer concrètement sur du full-stack (back Java/PHP ou front JS), de l'IA et des sujets systèmes/réseaux/cybersécurité. Profil rigoureux, autonome, avec une vision complète infra + applicatif grâce au parcours TAI/TSSR.
 
 ## Liens
 
