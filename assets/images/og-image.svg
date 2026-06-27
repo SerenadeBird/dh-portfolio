@@ -1,20 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
-    <radialGradient id="glow1" cx="15%" cy="0%" r="60%">
-      <stop offset="0%" stop-color="#4f90f7" stop-opacity="0.12"/>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0812"/>
+      <stop offset="100%" stop-color="#121832"/>
+    </linearGradient>
+    <radialGradient id="blob1" cx="15%" cy="0%" r="60%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.35"/>
       <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="glow2" cx="85%" cy="100%" r="55%">
-      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.08"/>
+    <radialGradient id="blob2" cx="85%" cy="100%" r="55%">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity="0.28"/>
       <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
     </radialGradient>
+    <radialGradient id="blob3" cx="50%" cy="50%" r="45%">
+      <stop offset="0%" stop-color="#fb923c" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accentGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="40%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
   </defs>
-  <rect width="1200" height="630" fill="#060b18"/>
-  <rect width="1200" height="630" fill="url(#glow1)"/>
-  <rect width="1200" height="630" fill="url(#glow2)"/>
-  <text x="600" y="220" text-anchor="middle" font-family="SF Mono, Monaco, Consolas, Courier New, monospace" font-size="48" font-weight="700" fill="#4f90f7" opacity="0.6">&lt;DH_/&gt;</text>
-  <text x="600" y="310" text-anchor="middle" font-family="-apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="64" font-weight="700" fill="#f1f5f9">Dylan Holin</text>
-  <text x="600" y="380" text-anchor="middle" font-family="-apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="30" font-weight="400" fill="#94a3b8">Développeur avancé &amp; IA</text>
-  <rect x="480" y="420" width="240" height="1" fill="#4f90f7" opacity="0.4"/>
-  <text x="600" y="480" text-anchor="middle" font-family="-apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="500" fill="#64748b">Disponible en alternance · Juillet 2026</text>
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  <rect width="1200" height="630" fill="url(#blob1)"/>
+  <rect width="1200" height="630" fill="url(#blob2)"/>
+  <rect width="1200" height="630" fill="url(#blob3)"/>
+  <circle cx="900" cy="180" r="120" fill="url(#blob2)" opacity="0.4"/>
+  <circle cx="250" cy="520" r="100" fill="url(#blob1)" opacity="0.3"/>
+  <text x="600" y="285" text-anchor="middle" font-family="-apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="72" font-weight="700" fill="url(#accentGradient)">Dylan Holin</text>
+  <text x="600" y="360" text-anchor="middle" font-family="-apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="30" font-weight="400" fill="#c4a8d4">Développeur avancé &amp; IA</text>
+  <rect x="480" y="405" width="240" height="1" fill="url(#accentGradient)" opacity="0.5"/>
+  <text x="600" y="460" text-anchor="middle" font-family="-apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="500" fill="#9b7ab0">Disponible dès maintenant · Alternance 12 mois</text>
 </svg>
