@@ -34,7 +34,6 @@ Ce portfolio applique les bonnes pratiques de sécurité et de confidentialité 
 - `style-src 'self'` - Styles externes uniquement (variables CSS, pas de inline)
 - `img-src 'self' data:` - Images locales uniquement
 - `font-src 'self'` - Polices locales uniquement (variables CSS, pas de Google Fonts)
-- `frame-ancestors 'none'` - Protection contre clickjacking
 - `connect-src 'self'` - Connexions uniquement vers le domaine
 - `base-uri 'self'` - Empêche le détournement de l'URL de base du document
 - `form-action 'self'` - Restreint la cible des formulaires au domaine
