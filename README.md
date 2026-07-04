@@ -1,6 +1,6 @@
 # dh-portfolio
 
-Portfolio de Dylan Holin - Développeur avancé & IA. Le socle intensif de formation se termine fin juin 2026, recherche active d'une alternance Développeur & IA de 12 mois.
+Portfolio de Dylan Holin - Développeur avancé & IA. Premier socle terminé fin juin 2026 (CCP1 du DWWM validé, Niveau 5 ; seul CCP prévu au programme), recherche active d'une alternance de 12 mois pour valider le titre de Concepteur développeur d'applications (CDA, Niveau 6, Bac+3).
 
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-brightgreen?style=flat-square)](https://github.com/dylanholin/dh-portfolio)
 [![RGPD](https://img.shields.io/badge/RGPD-Compliant-blue?style=flat-square)](https://www.cnil.fr/)

@@ -1,6 +1,6 @@
 # Dylan Holin · Développeur avancé & IA
 
-> Portfolio de Dylan Holin, étudiant en formation Bac+3 « Développeur avancé & IA » au Campus Numérique in the Alps (Alixan, France). Le socle intensif de formation se termine le 29 juin 2026, recherche active d'une alternance Développeur & IA de 12 mois. Profil double : développement full-stack (Java/Spring Boot, PHP/Laravel, JavaScript, Python) et systèmes/réseaux/cybersécurité.
+> Portfolio de Dylan Holin, étudiant en formation « Développeur avancé & IA » au Campus Numérique in the Alps (Alixan, France). Premier socle terminé le 29 juin 2026 : CCP1 du DWWM validé (Niveau 5, seul CCP prévu au programme). Recherche active d'une alternance de 12 mois pour valider le titre de Concepteur développeur d'applications (CDA, Niveau 6, Bac+3). Profil double : développement full-stack (Java/Spring Boot, PHP/Laravel, JavaScript, Python) et systèmes/réseaux/cybersécurité.
 
 Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux agents IA un résumé structuré et fiable du candidat. Source de vérité : [dylanholin.github.io/dh-portfolio](https://dylanholin.github.io/dh-portfolio).
 
@@ -10,8 +10,8 @@ Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux age
 - **Statut** : Étudiant en formation, en recherche d'alternance
 - **Disponibilité** : dès maintenant (recherche active jusqu'au 11 septembre 2026)
 - **Durée recherchée** : 12 mois d'alternance
-- **Formation en cours** : Développeur avancé & IA, Titre Professionnel Niveau 6 (Bac+3), Campus Numérique in the Alps, Alixan (26)
-- **Localisation** : Drôme / Ardèche (Valence, Guilherand-Granges), mobilité région Auvergne-Rhône-Alpes
+- **Formation en cours** : Développeur avancé & IA, Campus Numérique in the Alps, Alixan (26) - https://le-campus-numerique.fr/formations-developpeur2/. CCP1 DWWM (Niveau 5, validé ; seul CCP prévu au programme) + CDA (Niveau 6, Bac+3, à valider en alternance)
+- **Localisation** : Drôme / Ardèche (Valence, Guilherand-Granges), mobilité France entière (présentiel ou hybride)
 - **Email** : holinpro@proton.me
 - **Site** : https://dylanholin.github.io/dh-portfolio
 
@@ -21,9 +21,9 @@ Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux age
 - **Architecture & patterns** : MVC/MVVM, UML, JDBC/DAO
 - **Bases de données** : MySQL, PostgreSQL, modélisation BDD, introduction NoSQL
 - **Intelligence artificielle** : Prompt engineering, workflows, déploiement IA en local
-- **Cybersécurité** : OWASP, développement sécurisé, hardening Windows, pare-feu/ACL, VPN
+- **Cybersécurité** : OWASP, développement sécurisé, hardening Windows, CSP, pare-feu/ACL, VPN
 - **Outils & méthodes** : Git/GitHub, CI/CD, Docker, virtualisation (VirtualBox, VMware), Figma (UI/UX), Agile/Scrum, tests unitaires (JUnit), tests E2E, mocking, veille technologique
-- **Systèmes & réseaux** : Active Directory, Windows Server, TCP/IP, DNS, DHCP, VLAN, VPN, SSH, GLPI, WDS/MDT
+- **Systèmes & réseaux** : Active Directory, Windows Server, GPO, TCP/IP, DNS, DHCP, VLAN, VPN, SSH, GLPI, WDS/MDT
 - **Support & Infrastructure** : Windows 10/11, distributions Linux, maintenance matérielle & diagnostic, installation/configuration postes, support utilisateur
 
 ## Projets
@@ -36,7 +36,7 @@ Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux age
 
 ## Parcours de formation
 
-- **2025-2027** : Développeur avancé & IA (Bac+3, Titre Pro Niveau 6), Campus Numérique in the Alps, Alixan. 20 mois (8 intensifs + 12 en alternance).
+- **2025-2027** : Développeur avancé & IA, Campus Numérique in the Alps, Alixan. 20 mois : 8 intensifs (CCP1 DWWM validé, Niveau 5, juin 2026 ; seul CCP prévu au programme) + 12 en alternance (CDA, Niveau 6, Bac+3).
 - **2024** : Technicien Supérieur Systèmes et Réseaux (Bac+2, Titre Pro Niveau 5), CCI de la Drôme, Valence.
 - **2022-2023** : Technicien en Assistance Informatique (Bac, Titre Pro Niveau 4), CCI de la Drôme, Valence.
 - **2019-2020** : BTS Gestion et comptabilité (1re année uniquement), Lycée polyvalent Algoud-Laffemas, Valence. Réorientation assumée vers l'informatique.
@@ -50,7 +50,7 @@ Ce fichier suit la convention [llms.txt](https://llmstxt.org) et fournit aux age
 
 ## Ce que je recherche
 
-Une alternance de 12 mois en Développeur & IA dans une équipe de développement où je peux contribuer concrètement sur du full-stack (back Java/PHP ou front JS), de l'IA et des sujets systèmes/réseaux/cybersécurité. Profil rigoureux, autonome, avec une vision complète infra + applicatif grâce au parcours TAI/TSSR.
+Une alternance de 12 mois pour valider le titre de Concepteur développeur d'applications (CDA, Niveau 6, Bac+3) en présentiel ou hybride (France entière), dans une équipe de développement où je peux contribuer concrètement sur du back-end, full-stack (back Java/PHP ou front JS), de l'IA et des sujets systèmes/réseaux/cybersécurité. Profil rigoureux, autonome, avec une vision complète infra + applicatif grâce au parcours TAI/TSSR.
 
 ## Liens
 
